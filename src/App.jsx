@@ -1,17 +1,18 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { Toaster } from 'sonner';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "sonner";
 
-import { queryClient } from '@/lib/queryClient';
-import ErrorBoundary from '@/components/ErrorBoundary';
-import { PrivateRoute } from '@/components/PrivateRoute';
-import { DashboardLayout } from '@/components/layout/DashboardLayout';
+import { queryClient } from "@/lib/queryClient";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import { PrivateRoute } from "@/components/PrivateRoute";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
 
 // Pages
-import { Login } from '@/pages/auth/Login';
-import { Register } from '@/pages/auth/Register';
-import { Dashboard } from '@/pages/dashboard/Dashboard';
-import { NotFound } from '@/pages/NotFound';
+import { Login } from "@/pages/auth/Login";
+import { Register } from "@/pages/auth/Register";
+import { Dashboard } from "@/pages/dashboard/Dashboard";
+import { Checks } from "@/pages/dashboard/Checks";
+import { NotFound } from "@/pages/NotFound";
 
 function App() {
   return (
@@ -35,9 +36,20 @@ function App() {
               }
             />
 
+            <Route
+              path="/checks"
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <Checks />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
+
             {/* Redirects */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            
+
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
