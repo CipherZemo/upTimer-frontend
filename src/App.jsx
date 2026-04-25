@@ -14,6 +14,8 @@ import { Dashboard } from "@/pages/dashboard/Dashboard";
 import { Checks } from "@/pages/dashboard/Checks";
 import { CheckDetails } from '@/pages/dashboard/CheckDetails'; 
 import { NotFound } from "@/pages/NotFound";
+import { Pricing } from '@/pages/dashboard/Pricing';  
+import { Settings } from '@/pages/dashboard/Settings';
 
 function App() {
   return (
@@ -58,6 +60,29 @@ function App() {
                 </PrivateRoute>
               }
             />
+
+            <Route
+              path="/pricing"
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <Pricing />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/settings"
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <Settings />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
+
 
             {/* Redirects */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
