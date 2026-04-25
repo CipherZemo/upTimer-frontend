@@ -41,6 +41,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // ADD THESE CHART COLORS
+        chart: {
+          1: "hsl(142, 76%, 36%)",  // Green
+          2: "hsl(221.2, 83.2%, 53.3%)",  // Blue
+          3: "hsl(48, 96%, 53%)",  // Yellow
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

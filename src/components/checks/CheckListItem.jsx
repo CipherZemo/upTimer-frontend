@@ -1,10 +1,13 @@
+import { useNavigate } from 'react-router-dom';  // ADD THIS
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { StatusBadge, UptimeBadge } from './StatusBadge';
-import { Trash2, ExternalLink, Clock } from 'lucide-react';
+import { Trash2, ExternalLink, Clock, Eye } from 'lucide-react';  // ADD Eye
 import { formatDistanceToNow } from 'date-fns';
 
 export function CheckListItem({ check, onDelete }) {
+  const navigate = useNavigate();  // ADD THIS
+
   const formatLastChecked = (date) => {
     if (!date) return 'Never';
     try {
@@ -29,7 +32,7 @@ export function CheckListItem({ check, onDelete }) {
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
               <ExternalLink className="h-4 w-4 flex-shrink-0" />
               
-                href={check.url}
+              <a  href={check.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="truncate hover:underline"
@@ -55,8 +58,16 @@ export function CheckListItem({ check, onDelete }) {
             </div>
           </div>
 
-          {/* Actions */}
+          {/* Actions - ADD VIEW DETAILS BUTTON */}
           <div className="flex items-center gap-2 ml-4">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => navigate(`/checks/${check._id}`)}
+              title="View Details"
+            >
+              <Eye className="h-4 w-4" />
+            </Button>
             <Button
               variant="outline"
               size="icon"
