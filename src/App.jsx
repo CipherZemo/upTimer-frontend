@@ -12,6 +12,7 @@ import { Login } from "@/pages/auth/Login";
 import { Register } from "@/pages/auth/Register";
 import { Dashboard } from "@/pages/dashboard/Dashboard";
 import { Checks } from "@/pages/dashboard/Checks";
+import { CheckDetails } from '@/pages/dashboard/CheckDetails'; 
 import { NotFound } from "@/pages/NotFound";
 
 function App() {
@@ -42,6 +43,17 @@ function App() {
                 <PrivateRoute>
                   <DashboardLayout>
                     <Checks />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
+            
+            <Route
+              path="/checks/:id"
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <CheckDetails />
                   </DashboardLayout>
                 </PrivateRoute>
               }

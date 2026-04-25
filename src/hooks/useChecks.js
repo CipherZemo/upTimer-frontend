@@ -81,3 +81,23 @@ export function useDeleteCheck() {
     },
   });
 }
+
+// Get check results (history)
+export function useCheckResults(checkId, params = {}) {
+  return useQuery({
+    queryKey: ['check-results', checkId, params],
+    queryFn: () => checksAPI.getCheckResults(checkId, params),
+    enabled: !!checkId,
+    staleTime: 60 * 1000, // 1 minute
+  });
+}
+
+// Get check incidents
+export function useCheckIncidents(checkId, params = {}) {
+  return useQuery({
+    queryKey: ['check-incidents', checkId, params],
+    queryFn: () => checksAPI.getCheckIncidents(checkId, params),
+    enabled: !!checkId,
+    staleTime: 60 * 1000,
+  });
+}
